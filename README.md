@@ -190,6 +190,18 @@ To prevent double-booking, the backend uses database transactions with row-level
 ## License
 
 This project is licensed under the MIT License.
-```
 
-These files provide comprehensive documentation and interview preparation material for your project.
+## Contributing
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/improvement`)
+3. Make your changes
+4. Commit your changes (`git commit -am 'Add new feature'`)
+5. Push to the branch (`git push origin feature/improvement`)
+6. Create a Pull Request
+
+Please ensure your PR:
+- Follows the existing code style
+- Includes relevant tests
+- Updates documentation as needed
+- Describes the changes in the PR description
