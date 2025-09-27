@@ -1,39 +1,23 @@
-// server/server.js
 import express from 'express';
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-dotenv.config(); // Load environment variables from .env file (useful for local dev)
+dotenv.config(); 
 
 const app = express();
 app.use(cors());
-// Optional: Configure CORS more specifically for production
-// app.use(cors({
-//   origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Replace with your frontend URL
-// }));
+
 app.use(express.json());
 
-// --- Database Connection Configuration ---
-// Use DATABASE_URL from the environment (e.g., provided by Render/Railway PostgreSQL add-on)
-// Fallback to individual variables for local development if DATABASE_URL is not set
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // Primary connection string for deployed environments
-  // Optional: Fallback configuration for local development (commented out for production)
-  // host: process.env.DB_HOST || 'localhost',
-  // port: process.env.DB_PORT || 5432,
-  // database: process.env.DB_NAME || 'hotel_reservation',
-  // user: process.env.DB_USER || 'postgres',
-  // password: process.env.DB_PASSWORD || 'your_local_password',
+  connectionString: process.env.DATABASE_URL, 
 });
-// --- End Database Configuration ---
 
 // Test database connection (optional, can be removed for production)
 pool.connect((err, client, release) => {
   if (err) {
     console.error('Error connecting to database:', err);
-    // Depending on your needs, you might want the app to exit if DB connection fails critically
-    // process.exit(1);
     return; // Or just log and continue, relying on error handling in routes
   }
   console.log('Connected to PostgreSQL database');
@@ -283,8 +267,7 @@ app.post('/api/reset', async (req, res) => {
   }
 });
 
-// Start server
-const PORT = process.env.PORT || 5000; // Use Render/Railway's PORT variable, fallback to 5000
+const PORT = process.env.PORT || 5000; 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
